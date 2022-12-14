@@ -33,4 +33,5 @@ jobs:
         run: |
           git fetch origin main
           URLS=$(git diff origin/main..HEAD --unified=0 -- ./data/members.json | grep '"url"'  | grep -o '\"url\":\s\".*\"' | grep -Eo "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u)
-          sh ./pull-request.sh
+          chmod +x ./workflows/pull-request.sh
+          sh ./workflows/pull-request.sh
