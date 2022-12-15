@@ -8,9 +8,7 @@ on:
       - 'data/members.json'
   push:
     branches:
-      - 'feature/github-actions'
-    paths:
-    - 'data/members.json'
+      - 'feature/pr-workflow'
 
 jobs:
   build:
