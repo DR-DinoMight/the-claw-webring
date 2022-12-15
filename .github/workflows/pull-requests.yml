@@ -25,4 +25,3 @@ jobs:
           git fetch origin main
           chmod +x ./workflows/validate-members.sh
           bash ./workflows/validate-members.sh
-        continue-on-error: true
