@@ -1,7 +1,7 @@
 #!/bin/sh
-# URLS=$(git diff origin/main..HEAD --unified=0 -- ./data/members.json  | grep '^+' | grep -o '\"url\":\s\".*\"' | grep -Eo "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u)
-# Use a for loop to iterate over the URLs in the $URLS variable
 
+URLS=$(git diff origin/main..HEAD --unified=0 -- ./data/members.json  | grep '^+' | grep -o '\"url\":\s\".*\"' | grep -Eo "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u)
+# Use a for loop to iterate over the URLs in the $URLS variable
 # Check if URLs is not empty if so exit 0
 if [ -z "$URLS" ]; then
 	exit 0
