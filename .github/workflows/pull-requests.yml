@@ -1,0 +1,26 @@
+name: Pull Requests
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened]
+    paths:
+      - 'data/members.json'
+  push:
+    branches:
+      - 'feature/github-actions'
+    paths:
+    - 'data/members.json'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PR_AUTHOR_GITHUB_ID: ${{ github.event.pull_request.user.login }}
+    name: "Check changes files"
+    steps:
+      - name: print-diff
+        shell: bash
+        run: |
+          chmod +x ./workflows/pull-request.sh
+          bash ./workflows/pull-request.sh
