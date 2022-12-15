@@ -14,13 +14,17 @@ for url in $URLS; do
   # Check the exit status of the previous command
   if [ $? -eq 0 ]; then
     # Print a message indicating that the tag was found in the URL
-    echo "${GREEN}$url: ✅${NC}"
+
+    if [[ "${url: -1}" != *'/'* ]]; then
+      echo "::warning file=./data/members.json::$url: ❌ (Dosen't have a trailing / at the end)"
+    else
+          echo "::debug::$url: ✅"
+    fi
   else
     # Print a message indicating that the tag was not found in the URL
-    echo "${RED}$url: ❌${NC}"
-    exit 1
+    echo "::warning file=./data/members.json::$url: ❌ (Dosen't have the webring tag)"
   fi
 done
 
-echo "Finished searching for and it passed"
+echo "Finished searching"
 exit 0
