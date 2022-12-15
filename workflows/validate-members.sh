@@ -18,13 +18,10 @@ for url in $URLS; do
     if [[ "${url: -1}" != *'/'* ]]; then
       echo "::warning file=./data/members.json::$url: ❌ (Dosen't have a trailing / at the end)"
     else
-          echo "::debug::$url: ✅"
+          echo "$url: ✅"
     fi
   else
     # Print a message indicating that the tag was not found in the URL
     echo "::warning file=./data/members.json::$url: ❌ (Dosen't have the webring tag)"
   fi
 done
-
-echo "Finished searching"
-exit 0
