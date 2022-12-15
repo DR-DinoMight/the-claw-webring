@@ -7,7 +7,7 @@ if [ -z "$URLS" ]; then
 	exit 0
 fi
 
-errors = 0
+errors=0
 for url in $URLS; do
   # Use curl and grep to search for the <the-claw-webring-widget> tag in the URL
   curl -s $url | grep -qo "<the-claw-webring-widget>"
@@ -18,18 +18,18 @@ for url in $URLS; do
 
     if [[ "${url: -1}" != *'/'* ]]; then
         echo "::warning file=./data/members.json::$url: ❌ (Dosen't have a trailing / at the end)"
-        error = 1
+        errors=1
     else
         echo "$url: ✅"
     fi
   else
         # Print a message indicating that the tag was not found in the URL
         echo "::warning file=./data/members.json::$url: ❌ (Dosen't have the webring tag)"
-        error = 1
+        errors=1
   fi
 done
 
-if [ $error -ne 0 ]; then
+if [ $errors -ne 0 ]; then
     echo "::error file=./data/members.json::Has Invalid webrings"
     exit 1
 fi
