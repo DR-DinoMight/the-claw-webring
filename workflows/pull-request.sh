@@ -2,9 +2,6 @@
 git fetch origin main
 # Run the `git diff` command to compare the current branch with the `origin/main` branch
 URLS=$(git diff origin/main..HEAD --unified=0 -- ./data/members.json  | grep '^+' | grep -o '\"url\":\s\".*\"' | grep -Eo "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u)
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-NC='\033[0m' # No Color
 
 # Use a for loop to iterate over the URLs in the $URLS variable
 for url in $URLS; do
