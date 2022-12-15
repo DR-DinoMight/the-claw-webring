@@ -23,5 +23,5 @@ jobs:
         shell: bash
         run: |
           git fetch origin main
-          chmod +x ./workflows/pull-request.sh
-          bash ./workflows/pull-request.sh
+          chmod +x ./workflows/validate-members.sh
+          bash ./workflows/validate-members.sh
